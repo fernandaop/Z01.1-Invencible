@@ -51,7 +51,7 @@ public class SymbolTable {
      */
     public Integer getAddress(String symbol) {
         int key = 0;
-        if (!(symbol == null)){
+        if (symbolTable.containsKey(symbol)){
             key = symbolTable.get(symbol);
         }
     	return key;

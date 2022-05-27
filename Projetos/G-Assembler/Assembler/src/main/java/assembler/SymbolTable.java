@@ -50,7 +50,10 @@ public class SymbolTable {
      * @return valor numérico associado ao símbolo procurado.
      */
     public Integer getAddress(String symbol) {
-        int key = symbolTable.get(symbol);
+        int key = 0;
+        if (symbolTable.containsKey(symbol)){
+            key = symbolTable.get(symbol);
+        }
     	return key;
     }
 

@@ -63,7 +63,18 @@ public class Code {
      */
     public static String comp(String[] mnemnonic) {
         String output="";
-        if (mnemnonic[0].equals("movw")){
+        switch (mnemnonic[0]) {
+            case "andw":
+                switch (mnemnonic[1]) {
+                    case "(%A)":
+                        output = "001000000";
+                    case "%D":
+                        output = "000000000";
+                    case "%A":
+                        output = "000000000";
+                }
+        }
+            if (mnemnonic[0].equals("movw")){
                 if ((mnemnonic[1]).equals("%D")){
                         output="000001100";
                     }
@@ -73,6 +84,12 @@ public class Code {
                 else if (((mnemnonic[1]).equals("%A"))){
                         output = "000110000";
                     }
+                else if (((mnemnonic[1]).equals("$1"))){
+                    output = "000111111";
+                }
+                else{
+                    output = "000101010";
+                }
                 }
             else if (mnemnonic[0].equals("addw")){
                 if (
@@ -241,7 +258,9 @@ public class Code {
             case "jg" : return "001";
             case "je"  : return "010";
             case "jge" : return "011";
-            case "jl"  : return "100";
+            case "jl"  :
+            case "impar":
+                return "100";
             case "jle" : return "110";
             case "jne"  : return "101";
             default    : return "000";
